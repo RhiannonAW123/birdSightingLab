@@ -34,7 +34,7 @@ const createRouter = function (collection) {
     collection
     .insertOne(newData)
     .then((result) => {
-      res.json(result)
+      res.json(result.ops[0])
     })
     .catch((err) => {
       console.error(err);
@@ -42,6 +42,20 @@ const createRouter = function (collection) {
       res.json({ status: 500, error: err });
     });
   });
+
+  router.delete('/:id', (req, res) => {
+    const id = req.params.id
+    collection
+    .deleteOne({_id: ObjectID(id)})
+    .then( result => {
+      res.json(result)
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500);
+      res.json({ status: 500, error: err });
+    });
+  })  
 
   return router;
 };

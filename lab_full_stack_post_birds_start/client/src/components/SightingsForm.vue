@@ -20,7 +20,7 @@
 
 <script>
 import { eventBus } from "../main.js";
-import SightingService from "./services/SightingService.js";
+import SightingService from "@/services/SightingService.js";
 export default {
   name: "sightings-form",
   data() {
